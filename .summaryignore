@@ -1,0 +1,5 @@
+.env
+../.venv
+.gen.py
+.next
+.node_modules

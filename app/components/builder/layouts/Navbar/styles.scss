@@ -1,0 +1,35 @@
+.nav {
+    height: 10vh;
+}
+
+.nav ul {
+    width: auto;
+    display: flex;
+    list-style: none;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.nav a {
+    padding: 30px;
+    display: block;
+    font-size: 21px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 640px) {
+    .nav {
+        height: auto;
+    }
+
+    .nav ul {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .nav li {
+        border-bottom: solid 1px #fff;
+    }
+}
