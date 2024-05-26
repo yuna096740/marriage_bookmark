@@ -4,8 +4,8 @@ import "./styles.scss"
 
 export default function Counter() {
   return (
-    <div className="container">
-      <h1 className="intro">はじめの挨拶</h1>
+    <div className="intro-container">
+      <h1 className="title">はじめの挨拶</h1>
 
       <div className="intro-line"></div>
 
@@ -36,7 +36,7 @@ export default function Counter() {
 
       <div className="next-link">
         <Link href="/our_profile">
-          プロフィールページへ
+          プロフィールページへ進む
         </Link>
       </div>
     </div>

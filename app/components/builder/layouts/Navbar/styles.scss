@@ -1,3 +1,36 @@
+// 共通設定
+body {
+    background-image: url("../../../images/marrige_back.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color: white;
+
+    min-height: 100vh;
+}
+
+.next-link a{
+    padding: 30px;
+    display: block;
+    font-size: 21px;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+}
+
+.title {
+    font-size: 45px;
+    letter-spacing: 10px;
+}
+
+.line {
+    border-bottom: 4px solid rgb(227, 167, 16);
+}
+
+
+
+// ナビ設定
 .nav {
     height: 10vh;
 }

@@ -1,38 +1,8 @@
-body {
-    background-image: url("../components/images/marrige_back.png");
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    background-color: white;
-
-    min-height: 100vh;
-}
-
-.next-link {
-    padding: 30px;
-    display: block;
-    font-size: 21px;
-    font-weight: bold;
-    color: black;
-    text-decoration: none;
-}
-
-
-.container {
+.intro-container {
     width: 100%;
     max-width: 650px;
     margin: auto;
     text-align: center;
-}
-
-.intro {
-    font-size: 45px;
-    letter-spacing: 10px;
-}
-
-.intro-line {
-    border-bottom: 4px solid rgb(227, 167, 16);
 }
 
 .intro-section ul {

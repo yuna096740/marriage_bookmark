@@ -1,0 +1,39 @@
+.our-profile-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.our-profile-images img{
+    margin: 10px 70px;
+}
+
+.our-profile-sections {
+    max-width: 60%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.our-profile-sections ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    position: relative; /* relativeに設定してabsoluteを基準にする */
+}
+
+.our-profile-sections li {
+    margin: 0 10px;
+}
+
+.our-profile-sec-title {
+    font-size: larger;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap; /* テキストが改行されないようにする */
+    text-decoration: underline;
+}
