@@ -2,12 +2,28 @@
 import Link from "next/link";
 import "./styles.scss"
 
-export default function Counter() {
+import { useAuth } from '../components/AuthContext';
+import { useRouter } from 'next/navigation';
+import { useState, useEffect } from 'react';
+
+const IntroductionPage: React.FC = () => {
+  // const { authenticated } = useAuth();
+  // const router = useRouter();
+  // // const [errorMessage, setErrorMessage] = useState('');
+
+  // useEffect(() => {
+  //   if (!authenticated) {
+  //     router.push('/');
+  //     // setErrorMessage('認証できませんでした。パスワードが間違っています。');
+  //   }
+  // }, [authenticated, router]);
+
+
   return (
     <div className="intro-container">
       <h1 className="title">はじめの挨拶</h1>
 
-      <div className="intro-line"></div>
+      <div className="line"></div>
 
       <div className="intro-section">
         <ul className="sec-1">
@@ -41,4 +57,7 @@ export default function Counter() {
       </div>
     </div>
   );
+
 }
+
+export default IntroductionPage;

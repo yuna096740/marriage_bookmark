@@ -4,48 +4,63 @@
 
 - my-app/
   - app/
-    - page/
-      - index.tsx
-      - home/
-        - layout.tsx
-        - page.tsx
-      - from_now_on/
-        - layout.tsx
-        - page.tsx
-      - introduction/
-        - layout.tsx
-        - page.tsx
-      - our_histories/
-        - layout.tsx
-        - page.tsx
-      - childhood/
-        - layout.tsx
-        - page.tsx
-      - about/
-        - layout.tsx
-        - page.tsx
-      - nakajima_family_intro/
-        - layout.tsx
-        - page.tsx
-      - our_profile/
-        - layout.tsx
-        - page.tsx
-      - finally/
-        - layout.tsx
-        - page.tsx
-      - sasaki_family_intro/
-        - layout.tsx
-        - page.tsx
+    - home/
+      - layout.tsx
+      - page.tsx
     - favicon.ico (binary file)
+    - from_now_on/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - introduction/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - our_histories/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - childhood/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - about/
+      - layout.tsx
+      - page.tsx
+    - nakajima_family_intro/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
     - components/
-      - layouts/
+      - images/
+        - marrige_back.png (binary file)
+      - PasswordInput.tsx
+      - AuthContext.tsx
+    - layout.tsx
+    - our_profile/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - finally/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
+    - page.tsx
     - globals.css
+    - sasaki_family_intro/
+      - styles.scss
+      - layout.tsx
+      - page.tsx
   - gen.py
   - postcss.config.mjs
   - next.config.mjs
   - README.md
   - tailwind.config.ts
   - public/
+    - childhood-yusei.jpg (binary file)
+    - wedding_shinrou.png (binary file)
+    - wedding_hanayome.png (binary file)
+    - our_histories.jpg (binary file)
     - vercel.svg
     - next.svg
   - package-lock.json
@@ -55,25 +70,7 @@
 
 ## File Contents
 
-### app/page/index.tsx
-
-```
-import React from 'react';
-
-const HomePage: React.FC = () => {
-  return (
-    <div>
-      <h1>Welcome to My App!</h1>
-      <p>This is the home page of my Next.js application.</p>
-    </div>
-  );
-};
-
-export default HomePage;
-
-```
-
-### app/page/home/layout.tsx
+### app/home/layout.tsx
 
 ```
 import type { Metadata } from "next";
@@ -101,7 +98,7 @@ export default function RootLayout({
 
 ```
 
-### app/page/home/page.tsx
+### app/home/page.tsx
 
 ```
 'use client'
@@ -129,55 +126,25 @@ export default function Counter() {
 
 ```
 
-### app/page/from_now_on/layout.tsx
+### app/from_now_on/styles.scss
 
 ```
-"use client";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
-
-export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
-
-```
-
-### app/page/from_now_on/page.tsx
-
-```
-"use client";
-import Link from "next/link";
-
-export default function Counter() {
-  return (
-    <div>
-      <h1>⑦from_now_on Page</h1>
-      <div>
-        <Link href="/finally">
-          最後にへ
-        </Link>
-      </div>
-    </div>
-  );
+.from-now-on-container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
 }
 
 ```
 
-### app/page/introduction/layout.tsx
+### app/from_now_on/layout.tsx
 
 ```
 import { Inter } from "next/font/google";
 
-import { Footer } from "../../components/builder/layouts/Footer/footer";
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -189,8 +156,9 @@ export default function Layout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {children}
 
+        <Navbar />
+          {children}
         <Footer />
 
       </body>
@@ -201,19 +169,37 @@ export default function Layout({
 
 ```
 
-### app/page/introduction/page.tsx
+### app/from_now_on/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import "./styles.scss"
 
 export default function Counter() {
   return (
-    <div>
-      <h1>①intro Page</h1>
-      <div>
-        <Link href="/our_profile">
-          プロフィールページへ
+    <div className="from-now-on-container">
+      <h1 className="title">今後について</h1>
+
+      <div className="line"></div>
+
+      <div className="from-now-on-sections">
+        <div className="from-now-on-sec1">
+          <h3 className="from-now-on-sec-title">引越し</h3>
+        </div>
+
+        <div className="from-now-on-sec2">
+          <h3 className="from-now-on-sec-title">わんちゃんについて</h3>
+        </div>
+
+        <div className="from-now-on-sec3">
+          <h3 className="from-now-on-sec-title">結婚式</h3>
+        </div>
+      </div>
+
+      <div className="next-link">
+        <Link href="/finally">
+          最後に
         </Link>
       </div>
     </div>
@@ -222,39 +208,192 @@ export default function Counter() {
 
 ```
 
-### app/page/our_histories/layout.tsx
+### app/introduction/styles.scss
 
 ```
-"use client";
+.intro-container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    text-align: center;
+}
+
+.intro-section ul {
+    list-style: none;
+    font-size: 25px;
+    font-weight: 900;
+    letter-spacing: 5px;
+}
+
+.intro-section li {
+    margin: 30px 0;
+}
+
+```
+
+### app/introduction/layout.tsx
+
+```
 import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
 
 ```
 
-### app/page/our_histories/page.tsx
+### app/introduction/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import "./styles.scss"
 
 export default function Counter() {
   return (
-    <div>
-      <h1>③our_histories Page</h1>
-      <div>
+    <div className="intro-container">
+      <h1 className="title">はじめの挨拶</h1>
+
+      <div className="line"></div>
+
+      <div className="intro-section">
+        <ul className="sec-1">
+          <li>
+            本日はお忙しいところ<br/>
+            私たちのためにお越しいただき<br/>
+            ありがとうございます
+          </li>
+        </ul>
+
+        <ul className="sec-2">
+          <li>
+            おいしい料理と歓談を楽しみ<br/>
+            両家の親睦を深める<br/>
+            機会となれば幸いです
+          </li>
+        </ul>
+
+        <ul className="sec-3">
+          <li>
+            本日はどうぞ<br/>
+            よろしくお願いいたします
+          </li>
+        </ul>
+      </div>
+
+      <div className="next-link">
+        <Link href="/our_profile">
+          プロフィールページへ進む
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+```
+
+### app/our_histories/styles.scss
+
+```
+.our_histories-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.our_histories-main-container {
+    margin-top: 50px;
+    max-width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.our_histories-img img {
+    border-radius: 50px;
+}
+
+
+```
+
+### app/our_histories/layout.tsx
+
+```
+import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
+
+```
+
+### app/our_histories/page.tsx
+
+```
+"use client";
+import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
+
+export default function Counter() {
+  return (
+    <div className="our_histories-container">
+      <h1 className="title">二人の出会い</h1>
+      <div className="line"></div>
+
+      <div className="our_histories-main-container">
+
+        
+        <div className="our_histories-img">
+          <Image src="/our_histories.jpg" width={500} height={370} alt="wedding_shinrou" />
+        </div>
+        
+        <div className="episode-sections">
+          <h3>二人の出会いエピソードを記入</h3>
+        </div>
+      </div>
+
+      <div className="next-link">
         <Link href="/childhood">
           幼い頃へ
         </Link>
@@ -265,39 +404,89 @@ export default function Counter() {
 
 ```
 
-### app/page/childhood/layout.tsx
+### app/childhood/styles.scss
 
 ```
-"use client";
+.childhood-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.childhood-img img {
+    border-radius: 100%;
+}
+
+.childhood-sec {
+    display: flex;
+    justify-content: center;
+}
+
+```
+
+### app/childhood/layout.tsx
+
+```
 import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
 
 ```
 
-### app/page/childhood/page.tsx
+### app/childhood/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
+
 
 export default function Counter() {
   return (
-    <div>
-      <h1>④childhood Page</h1>
-      <div>
+    <div className="childhood-container">
+      <h1 className="title">幼いころ</h1>
+      <div className="line"></div>
+
+      <div className="childhood-img">
+        <Image src="/childhood-yusei.jpg" width={200} height={160} alt="childhood-yusei" />
+        <Image src="/wedding_hanayome.png" width={200} height={160} alt="wedding_shinrou" />
+      </div>
+
+      <div className="childhood-sec">
+        <div className="childfood-sec-yusei">
+          <h3>エピソード</h3>
+        </div>
+
+        <div className="childfood-sec-akane">
+        <h3>エピソード</h3>
+        </div>
+      </div>
+
+      <div className="next-link">
         <Link href="/sasaki_family_intro">
           佐々木家紹介へ
         </Link>
@@ -308,7 +497,7 @@ export default function Counter() {
 
 ```
 
-### app/page/about/layout.tsx
+### app/about/layout.tsx
 
 ```
 "use client";
@@ -330,7 +519,7 @@ export default function Layout({
 
 ```
 
-### app/page/about/page.tsx
+### app/about/page.tsx
 
 ```
 "use client";
@@ -358,41 +547,75 @@ export default function Counter() {
 
 ```
 
-### app/page/nakajima_family_intro/layout.tsx
+### app/nakajima_family_intro/styles.scss
 
 ```
-"use client";
+.nakajima_family_intro-container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+```
+
+### app/nakajima_family_intro/layout.tsx
+
+```
 import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
 
 ```
 
-### app/page/nakajima_family_intro/page.tsx
+### app/nakajima_family_intro/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
 
 export default function Counter() {
   return (
-    <div>
-      <h1>⑥nakajima_family_intro Page</h1>
-      <div>
+    <div className="nakajima_family_intro-container">
+      <h1 className="title">中島家紹介</h1>
+
+      <div className="line"></div>
+
+      <div className="our-profile-images">
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+      </div>
+
+      <div className="next-link">
         <Link href="/from_now_on">
-          今後についてへ
+          今後について
         </Link>
       </div>
     </div>
@@ -401,39 +624,276 @@ export default function Counter() {
 
 ```
 
-### app/page/our_profile/layout.tsx
+### app/components/PasswordInput.tsx
 
 ```
-"use client";
-import { Inter } from "next/font/google";
+'use client'; // これを追加
 
-const inter = Inter({ subsets: ["latin"] });
+import React, { useState } from 'react';
+import { useAuth } from './AuthContext'; // パスを適切に設定してください
 
-export default function Layout({
+const PasswordInput = () => {
+  const [inputPassword, setInputPassword] = useState('');
+  const { login } = useAuth();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(inputPassword);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="password"
+        value={inputPassword}
+        onChange={(e) => setInputPassword(e.target.value)}
+        placeholder="Enter password"
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+
+export default PasswordInput;
+
+```
+
+### app/components/AuthContext.tsx
+
+```
+'use client'; // これを追加
+
+import React, { useState, createContext, useContext, ReactNode } from 'react';
+
+// 認証状態を管理するためのコンテキストを作成
+const AuthContext = createContext({
+  authenticated: false,
+  login: (inputPassword: string) => {},
+  password: '',
+  setPassword: (password: string) => {}
+});
+
+interface AuthProviderProps {
+  children: ReactNode;
+}
+
+export const AuthProvider = ({ children }: AuthProviderProps) => {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const login = (inputPassword: string) => {
+    if (inputPassword === 'your-password') { // ここに実際のパスワードを設定
+      setAuthenticated(true);
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ authenticated, login, password, setPassword }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+
+export const useAuth = () => useContext(AuthContext);
+
+```
+
+### app/layout.tsx
+
+```
+export default function RootLayout({
     children,
-  }: Readonly<{
+  }: {
     children: React.ReactNode;
-  }>) {
+  }) {
     return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
+      <html>
+        <body>{children}</body>
       </html>
     );
   }
 
 ```
 
-### app/page/our_profile/page.tsx
+### app/our_profile/styles.scss
+
+```
+.our-profile-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.our-profile-images img{
+    margin: 10px 70px;
+}
+
+.our-profile-sections {
+    max-width: 60%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.our-profile-sections ul {
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    position: relative; /* relativeに設定してabsoluteを基準にする */
+}
+
+.our-profile-sections li {
+    margin: 0 10px;
+}
+
+.our-profile-sec-title {
+    font-size: larger;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    white-space: nowrap; /* テキストが改行されないようにする */
+    text-decoration: underline;
+}
+
+```
+
+### app/our_profile/layout.tsx
+
+```
+import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
+
+```
+
+### app/our_profile/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
 
 export default function OurProfilePage() {
   return (
-    <div>
-      <h1>②profile Page</h1>
-      <div>
+    <div className="our-profile-container">
+      <h1 className="title">プロフィール</h1>
+
+      <div className="line"></div>
+
+      <div className="our-profile-images">
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_hanayome.png" width={160} height={120} alt="wedding_hanayome" />
+      </div>
+
+      <div className="our-profile-sections">
+        <div className="our-profile-sec1">
+          <ul>
+            <li>27歳</li>
+            <li className="our-profile-sec-title">年齢</li>
+            <li>26歳</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec2">
+          <ul>
+            <li>1996年7月4日</li>
+            <li className="our-profile-sec-title">生年月日</li>
+            <li>1998年2月3日</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec3">
+          <ul>
+            <li>かに座</li>
+            <li className="our-profile-sec-title">星座</li>
+            <li>みずがめ座</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec4">
+          <ul>
+            <li>不明</li>
+            <li className="our-profile-sec-title">血液型</li>
+            <li>B型</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec5">
+          <ul>
+            <li>埼玉県</li>
+            <li className="our-profile-sec-title">出身</li>
+            <li>岩手県</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec6">
+          <ul>
+            <li>東京都渋谷区</li>
+            <li className="our-profile-sec-title">勤務地</li>
+            <li>東京都豊島区</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec7">
+          <ul>
+            <li>お魚捌き🐟</li>
+            <li className="our-profile-sec-title">趣味</li>
+            <li>パン作り🍞</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec8">
+          <ul>
+            <li>要記入</li>
+            <li className="our-profile-sec-title">特技</li>
+            <li>要記入</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec9">
+          <ul>
+            <li>魚介類全般</li>
+            <li className="our-profile-sec-title">好きな食べ物</li>
+            <li>勇生さんのご飯</li>
+          </ul>
+        </div>
+
+        <div className="our-profile-sec10">
+          <ul>
+            <li>要記入</li>
+            <li className="our-profile-sec-title">相手の好きなところ</li>
+            <li>口を開けて寝るところ</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="next-link">
         <Link href="/our_histories">
           二人の出会いへ
         </Link>
@@ -444,39 +904,86 @@ export default function OurProfilePage() {
 
 ```
 
-### app/page/finally/layout.tsx
+### app/finally/styles.scss
 
 ```
-"use client";
+.finally-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.finally-images img {
+    border-radius: 50px;
+}
+
+.finally-main-contents {
+    display: flex;
+}
+
+.finally-messages {
+    margin: auto;
+}
+
+```
+
+### app/finally/layout.tsx
+
+```
 import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
 
 ```
 
-### app/page/finally/page.tsx
+### app/finally/page.tsx
 
 ```
 "use client";
 import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
 
 export default function Counter() {
   return (
-    <div>
-      <h1>⑧finally Page</h1>
-      <div>
+    <div className="finally-container">
+
+      <div className="finally-main-contents">
+        <div className="finally-images">
+          <Image src="/our_histories.jpg" width={700} height={550} alt="our_histories" />
+        </div>
+
+        <div className="finally-messages">
+          <h3 className="finally-mess">
+            Thank You family ♡
+          </h3>
+        </div>
+      </div>
+
+      <div className="next-link">
         <Link href="/introduction">
           初めに戻る
         </Link>
@@ -487,46 +994,27 @@ export default function Counter() {
 
 ```
 
-### app/page/sasaki_family_intro/layout.tsx
+### app/page.tsx
 
 ```
-"use client";
-import { Inter } from "next/font/google";
+'use client';
 
-const inter = Inter({ subsets: ["latin"] });
+import React from 'react';
+import { AuthProvider } from './components/AuthContext';
 
-export default function Layout({
-    children,
-  }: Readonly<{
-    children: React.ReactNode;
-  }>) {
-    return (
-      <html lang="en">
-        <body className={inter.className}>{children}</body>
-      </html>
-    );
-  }
-
-```
-
-### app/page/sasaki_family_intro/page.tsx
-
-```
-"use client";
-import Link from "next/link";
-
-export default function Counter() {
+const HomePage: React.FC = ({ Component, pageProps }) => {
   return (
     <div>
-      <h1>⑤sasaki_family_intro Page</h1>
-      <div>
-        <Link href="/nakajima_family_intro">
-          中島家紹介へ
-        </Link>
-      </div>
+      <h1>Welcome to My App!</h1>
+      <p>This is the home page of my Next.js application.</p>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </div>
   );
-}
+};
+
+export default HomePage;
 
 ```
 
@@ -659,6 +1147,83 @@ export default function Counter() {
 	position: absolute !important;
 	white-space: nowrap !important;
 	border: 0 !important;
+}
+
+```
+
+### app/sasaki_family_intro/styles.scss
+
+```
+.sasaki_family_intro-container {
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+```
+
+### app/sasaki_family_intro/layout.tsx
+
+```
+import { Inter } from "next/font/google";
+
+import { Footer } from "../components/builder/layouts/Footer/footer";
+import { Navbar } from "../components/builder/layouts/Navbar/navbar";
+
+const inter = Inter({ subsets: ["latin"] });
+
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en">
+      <body className={inter.className}>
+
+        <Navbar />
+          {children}
+        <Footer />
+
+      </body>
+
+    </html>
+  );
+}
+
+```
+
+### app/sasaki_family_intro/page.tsx
+
+```
+"use client";
+import Link from "next/link";
+import Image from "next/image"
+import "./styles.scss"
+
+export default function Counter() {
+  return (
+    <div className="sasaki_family_intro-container">
+      <h1 className="title">佐々木家紹介</h1>
+
+      <div className="line"></div>
+
+      <div className="our-profile-images">
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+        <Image src="/wedding_shinrou.png" width={160} height={120} alt="wedding_shinrou" />
+      </div>
+
+      <div className="next-link">
+        <Link href="/nakajima_family_intro">
+          中島家紹介へ
+        </Link>
+      </div>
+    </div>
+  );
 }
 
 ```
@@ -796,9 +1361,7 @@ export default config;
 ```
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    experimental: {
-      appDir: true,
-    },
+
   };
   
   export default nextConfig;
